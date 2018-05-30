@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+//imports trash.js file
 import Trash from './components/Trash.js';
 
 class App extends Component {
+  // the constructor sets the intital state
   constructor() {
     super();
     this.state = {
@@ -14,6 +16,7 @@ class App extends Component {
     console.log(this.state.bins);
   }
 
+//sets interval to to every 1.5 seconds
   startGame() {
     setInterval(() => {
       this.setState( {
@@ -22,6 +25,7 @@ class App extends Component {
     }, 1500);
   }
 
+// gives random value of 1 or 0 for every bin on board
   getBinsState() {
     let bins = [];
     for (let i = 0; i < 9; i++){
@@ -31,6 +35,7 @@ class App extends Component {
     return bins;
   }
 
+//add points when full bin is clicked, maybe clear bin as well
   onTrashClicked = () => {
     // Fill this in!
   }
@@ -38,7 +43,9 @@ class App extends Component {
   render() {
     const bins = this.state.bins.map((bin, index) => {
       return (
-        <Trash key={`trash-${index}`} />
+        <Trash
+          key={`trash-${index}`}
+          binFilled={bin.isTrashVisible}/>
       );
     });
 
